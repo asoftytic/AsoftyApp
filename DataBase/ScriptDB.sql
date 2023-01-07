@@ -5,7 +5,7 @@ use AsoftyDb;
  
  CREATE TABLE `User` (
 	`UserId` INT NOT NULL AUTO_INCREMENT,
-	`CompayCode` INT NOT NULL, 
+	`CompanyCode` INT NOT NULL, 
     `Username` VARCHAR(50) NOT NULL , 
     `Password` VARCHAR(255) NOT NULL , 
 	`Status` DECIMAL(1,0) NOT NULL DEFAULT '0' , 
