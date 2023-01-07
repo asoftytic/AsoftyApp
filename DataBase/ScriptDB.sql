@@ -1,4 +1,4 @@
-#InitialSchema 1.0.0
+#InitialSchema 1.0.1
 
 Create database AsoftyDb;
 use AsoftyDb;
@@ -11,7 +11,7 @@ use AsoftyDb;
 	`Status` DECIMAL(1,0) NOT NULL DEFAULT '0' , 
     `Enabled` DECIMAL(1,0) NOT NULL DEFAULT '1' , 
     `RollCode` INT NOT NULL DEFAULT '1' , 	#Standar
- PRIMARY KEY (`UserId`), UNIQUE `CompayCode` (`CompayCode`, `UserId`)) ENGINE = InnoDB;
+ PRIMARY KEY (`UserId`), UNIQUE `CompanyCode` (`CompanyCode`, `Username`)) ENGINE = InnoDB;
  
  CREATE TABLE `Company` (
 	`CompanyId` INT NOT NULL AUTO_INCREMENT,
@@ -21,7 +21,7 @@ use AsoftyDb;
     `PlanCode` INT NOT NULL DEFAULT '1' , 	#Standar
  PRIMARY KEY (`CompanyId`));
  
-INSERT INTO User (CompayCode, Password, Username) VALUES(0, "12345", "admin");
+INSERT INTO User (CompanyCode, Password, Username) VALUES(0, "12345", "admin");
 
 CREATE TABLE Program(
 	ProgramId int not null AUTO_INCREMENT primary key,	#ProgramId unico para empresa
