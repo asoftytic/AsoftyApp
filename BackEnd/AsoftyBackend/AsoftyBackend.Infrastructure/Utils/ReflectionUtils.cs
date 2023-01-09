@@ -120,15 +120,15 @@ public class ReflectionUtils
 
     private static object GetRightOperandingExpression(MemberExpression member)
     {
-#pragma warning disable CS8600 // Se va a convertir un literal nulo o un posible valor nulo en un tipo que no acepta valores NULL
+#pragma warning disable CS8600 
         ConstantExpression din3 = (ConstantExpression)member.Expression;
-#pragma warning restore CS8600 // Se va a convertir un literal nulo o un posible valor nulo en un tipo que no acepta valores NULL
+#pragma warning restore CS8600 
         var members = din3?.Value?.GetType().GetFields() ?? throw new NullReferenceException("The expression has no fields.");
         var dictionary = members.ToDictionary(property => property.Name, property => property.GetValue(din3.Value));
 
 
         if (members[0].FieldType == typeof(string))
-            return "'" + dictionary[members[0].Name] + "'";
+            return "'" + dictionary[members[0].Name]?.AntiInjectionFormat() + "'";
 
         else return dictionary[members[0].Name];
     }
@@ -136,7 +136,7 @@ public class ReflectionUtils
     private static object GetRightOperandingExpression(ConstantExpression member)
     {
         if (member?.Value?.GetType() == typeof(string))
-            return "'" + member.Value + "'";
+            return "'" + member.Value.AntiInjectionFormat() + "'";
 
         else return member?.Value;
     }
@@ -150,7 +150,7 @@ public class ReflectionUtils
         fieldNames = properties.Select(p => p.Name);
         fieldValues = properties
             .Select(p => p.GetValue(model))
-            .Select(v => v.GetType() == typeof(string) ? $"'{v}'" : (v.GetType() == typeof(bool) ? ((bool)v == true ? "1" : "0") : v.ToString()));
+            .Select(v => v.GetType() == typeof(string) ? $"'{(v != null ? v.AntiInjectionFormat() : "")}'" : (v.GetType() == typeof(bool) ? ((bool)v == true ? "1" : "0") : v.ToString()));
     }
 }
 

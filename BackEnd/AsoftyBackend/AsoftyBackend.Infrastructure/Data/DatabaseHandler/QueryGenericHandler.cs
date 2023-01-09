@@ -28,7 +28,7 @@ public class QueryGenericHandler<T> : GenericHandler<T> where T : class, new()
         var query =
             $"SELECT * \n" +
             $"FROM {_type.Name}\n" +
-            $"{(string.IsNullOrEmpty(_where) ? "" : $"WHERE {_where} ")}";
+            $"{(string.IsNullOrEmpty(_where) ? "" : $"WHERE ({_where}) ")};";
 
 
         OpenConection();
@@ -44,8 +44,7 @@ public class QueryGenericHandler<T> : GenericHandler<T> where T : class, new()
 
         IEnumerable<string> fields = entity.GetType()
             .GetProperties()
-            .Where(f => !f.CustomAttributes.Where(a => a.AttributeType.Name == typeof(SqlIgnoreAttribute).Name).Any())
-            .Where(f => !f.CustomAttributes.Where(a => a.AttributeType.Name == typeof(PrimaryKeyAttribute).Name).Any())
+            .Where(f => !f.CustomAttributes.Where(a =>  a.AttributeType.Name == typeof(SqlIgnoreAttribute).Name).Any() || !f.CustomAttributes.Where(a => a.AttributeType.Name == typeof(PrimaryKeyAttribute).Name).Any())
             .Where(f => Array.IndexOf(IgnoreFields, f.Name) == -1)
             .Where(f => Array.IndexOf(nullValues, f.Name) == -1)
             .Select(f => f.Name);
@@ -65,13 +64,13 @@ public class QueryGenericHandler<T> : GenericHandler<T> where T : class, new()
     }
 
 
-
-
+    //  Multiples Insert
+    /*
     public async Task<int> InsertAsync(IEnumerable<T> entity)
     {
         IEnumerable<string> fields = typeof(T)
             .GetProperties()
-            .Where(f => !f.CustomAttributes.Where(a => a.AttributeType.Name == typeof(SqlIgnoreAttribute).Name).Any())
+            .Where(f => !f.CustomAttributes.Where(a => a.AttributeType.Name == typeof(SqlIgnoreAttribute).Name).Any() || !f.CustomAttributes.Where(a => a.AttributeType.Name == typeof(PrimaryKeyAttribute).Name).Any())
             .Select(f => f.Name);
 
         string sqlQuery = $"INSERT INTO {typeof(T).Name} ({String.Join(", ", fields)}) VALUES({String.Join(", ", fields.Select(f => ("@" + f)))});";
@@ -81,7 +80,7 @@ public class QueryGenericHandler<T> : GenericHandler<T> where T : class, new()
         //return await _connection.ExecuteAsync(sqlQuery, entity);
         throw new NotImplementedException("ToDo: refactorize first. this has bugs");
     }
-
+    */
 
 
     public override QueryGenericHandler<T> Where(Expression<Func<T, bool>> expression)
@@ -89,11 +88,16 @@ public class QueryGenericHandler<T> : GenericHandler<T> where T : class, new()
         return (QueryGenericHandler<T>)base.Where(expression);
     }
 
+    public override QueryGenericHandler<T> ExplicitWhere(string expression)
+    {
+        return (QueryGenericHandler<T>)base.ExplicitWhere(expression);
+    }
+
     public async Task OpenConectionAsync()
     {
         if(_connection == null || _connection.State != System.Data.ConnectionState.Open)
         {
-            _connection = new MySqlConnection("Server=localhost;User=root;Password=12345;Database=AsoftyDb;");
+            _connection = new MySqlConnection("Server=localhost;User=root;Password=12345;Database=AsoftyDb;");  //  Todo: Resolve this shit
             await _connection.OpenAsync();
         }
     }
@@ -102,7 +106,7 @@ public class QueryGenericHandler<T> : GenericHandler<T> where T : class, new()
     {
         if (_connection == null || _connection.State != System.Data.ConnectionState.Open)
         {
-            _connection = new MySqlConnection("Server=localhost;User=root;Password=12345;Database=AsoftyDb;");
+            _connection = new MySqlConnection("Server=localhost;User=root;Password=12345;Database=AsoftyDb;");  //  Todo: Resolve this shit
             _connection.Open();
         }
     }
