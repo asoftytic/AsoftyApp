@@ -2,7 +2,7 @@
 
 namespace AsoftyBackend.Infrastructure.Data.Model;
 
-public class User
+public class User : DbEntity
 {
     [PrimaryKey]
     public int UserId { get; set; }

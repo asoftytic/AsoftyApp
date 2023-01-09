@@ -18,7 +18,7 @@ namespace AsoftyBackend.Infrastructure.Utils
 
         
         
-        
+        public static bool NullOrEmpty(this string? str) => str == null || str == "";
         public static string AntiInjectionFormat(this string str) => str.Replace("'", "''").Replace("\"", "\"");
         public static string AntiInjectionFormat(this object str) => str?.ToString()?.Replace("'", "''").Replace("\"", "\"\"") ?? "";
     }

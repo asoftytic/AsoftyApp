@@ -6,12 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using AsoftyBackend.Infrastructure.Data.Attributes;
 using AsoftyBackend.Infrastructure.Data.Model;
+using AsoftyBackend.Infrastructure.Utils;
 using Dapper;
 using MySql.Data.MySqlClient;
 
 namespace AsoftyBackend.Infrastructure.Data.DatabaseHandler;
 
-public class QueryGenericHandler<T> : GenericHandler<T> where T : class, new()
+public class QueryGenericHandler<T> : GenericHandler<T> where T : DbEntity, new()
 {
     MySqlConnection _connection;
 
@@ -28,7 +29,7 @@ public class QueryGenericHandler<T> : GenericHandler<T> where T : class, new()
         var query =
             $"SELECT * \n" +
             $"FROM {_type.Name}\n" +
-            $"{(string.IsNullOrEmpty(_where) ? "" : $"WHERE ({_where}) ")};";
+            $"{(_where.NullOrEmpty() ? "" : $"WHERE ({_where}) ")};";
 
 
         OpenConection();
@@ -36,6 +37,34 @@ public class QueryGenericHandler<T> : GenericHandler<T> where T : class, new()
         return await _connection.QueryAsync<T>(query);
 
     }
+
+    /// <summary>
+    /// DELETE FROM [model] specified above. Use Where() method before or this execute DELETE clause without where.
+    /// </summary>
+    /// <returns></returns>
+    public async Task<int> Delete()
+    {
+        return await Delete(_where);
+    }
+
+    public async Task<int> DeleteWhere(Expression<Func<T, bool>> whereExpression)
+    {
+        string whereClause = "";
+        ReflectionUtils.ExpressionToString(whereExpression, ref whereClause);
+
+        return await Delete(whereClause);
+    }
+
+    private async Task<int> Delete(string whereClauseStr)
+    {
+        string sqlQuery = $"DELETE FROM {_type.Name} {(whereClauseStr.NullOrEmpty() ? "" : $"WHERE ({whereClauseStr});")};";
+
+        OpenConection();
+
+        return await _connection.ExecuteAsync(sqlQuery);
+    }
+
+
 
     public async Task<int> InsertAsync(object entity, params string[] IgnoreFields)
     {
