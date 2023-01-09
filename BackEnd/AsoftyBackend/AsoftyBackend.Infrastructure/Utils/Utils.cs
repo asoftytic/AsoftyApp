@@ -14,5 +14,12 @@ namespace AsoftyBackend.Infrastructure.Utils
             var json = JsonConvert.SerializeObject(obj);
             return JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
         }
+
+
+        
+        
+        
+        public static string AntiInjectionFormat(this string str) => str.Replace("'", "''").Replace("\"", "\"");
+        public static string AntiInjectionFormat(this object str) => str?.ToString()?.Replace("'", "''").Replace("\"", "\"\"") ?? "";
     }
 }
