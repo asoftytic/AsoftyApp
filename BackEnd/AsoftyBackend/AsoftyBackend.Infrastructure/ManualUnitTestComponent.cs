@@ -31,10 +31,21 @@ namespace AsoftyBackend.Infrastructure
             var t2 = db.InsertAsync(usr2);
 
             //  Delete example
-            var result = await db.DeleteWhere(u => u.Password == "Macaco12");   // Result needs to be 3
+            var result = await db.DeleteWhereAsync(u => u.Username == "George6");   // Result needs to be 3
 
             //  Delete one by PrimaryKey
-            result = await db.DeleteWhere(u => u.UserId == user1.First().UserId);
+            result = await db.DeleteWhereAsync(u => u.UserId == user1.First().UserId);
+
+
+            //  Update example
+            result = await db.UpdateWhereAsync(new User { Password = "Macaco13' 11" }, u => u.Username == "George5");
+
+
+            result = await db
+                .Where(u => u.Username == "George5")    //  Set filter
+                .UpdateAsync(new User { Password = "Macaco1" });   //  Send update
+
+            ;
 
             ;
             
