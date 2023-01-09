@@ -31,7 +31,7 @@ public class QueryGenericHandler<T> : GenericHandler<T> where T : DbEntity, new(
             $"FROM {_type.Name}\n" +
             $"{(_where.NullOrEmpty() ? "" : $"WHERE ({_where}) ")};";
 
-
+        _where = "";
         OpenConection();
 
         return await _connection.QueryAsync<T>(query);
@@ -47,7 +47,7 @@ public class QueryGenericHandler<T> : GenericHandler<T> where T : DbEntity, new(
         return await Delete(_where);
     }
 
-    public async Task<int> DeleteWhere(Expression<Func<T, bool>> whereExpression)
+    public async Task<int> DeleteWhereAsync(Expression<Func<T, bool>> whereExpression)
     {
         string whereClause = "";
         ReflectionUtils.ExpressionToString(whereExpression, ref whereClause);
@@ -80,17 +80,54 @@ public class QueryGenericHandler<T> : GenericHandler<T> where T : DbEntity, new(
 
         string sqlQuery = $"INSERT INTO {typeof(T).Name} ({String.Join(", ", fields)}) VALUES({String.Join(", ", fields.Select(f => ("@" + f)))});";
 
+        _where = "";
         OpenConection();
 
         return  await _connection.ExecuteAsync(sqlQuery, entity);
     }
 
-    public async Task<int> InsertSqlAsync(string query)
+    public async Task<int> UpdateAsync(object entity, params string[] IgnoreFields)
+    {
+        return await UpdateAsync(entity, _where, IgnoreFields);
+    }
+
+    public async Task<int> UpdateWhereAsync(object entity, Expression<Func<T, bool>> whereExpression, params string[] IgnoreFields)
+    {
+        string whereClause = "";
+        ReflectionUtils.ExpressionToString(whereExpression, ref whereClause);
+        return await UpdateAsync(entity, whereClause, IgnoreFields);
+    }
+
+    private async Task<int> UpdateAsync(object entity,string whereClauseStr, params string[] IgnoreFields)
+    {
+        string whereClause = whereClauseStr;
+
+        //  Select the null values to ignore
+        var nullValues = Utils.Utils.ObjectToDictionary(entity).Where(e => e.Value == null).Select(e => e.Key).ToArray();
+
+        IEnumerable<string> fields = entity.GetType()
+            .GetProperties()
+            .Where(f => !f.CustomAttributes.Where(a => a.AttributeType.Name == typeof(SqlIgnoreAttribute).Name).Any() || !f.CustomAttributes.Where(a => a.AttributeType.Name == typeof(PrimaryKeyAttribute).Name).Any())
+            .Where(f => Array.IndexOf(IgnoreFields, f.Name) == -1)
+            .Where(f => Array.IndexOf(nullValues, f.Name) == -1)
+            .Select(f => f.Name);
+
+        string sqlQuery = $"UPDATE {typeof(T).Name} SET {string.Join("", fields.Select((f, i) => (i == 0 ? "" : ", ") + $"{f} = @{f}"))} {(whereClause.NullOrEmpty() ? "" : "WHERE " + whereClause)};";
+
+        _where = "";    //  Clear where
+        OpenConection();
+
+        return await _connection.ExecuteAsync(sqlQuery, entity);
+    }
+
+    /*
+     public async Task<int> InsertSqlAsync(string query)
     {
         OpenConection();
 
         return await _connection.ExecuteAsync(query);
     }
+     */
 
 
     //  Multiples Insert
