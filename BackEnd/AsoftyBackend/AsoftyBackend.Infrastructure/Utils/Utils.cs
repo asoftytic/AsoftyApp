@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using AsoftyBackend.Infrastructure.Data;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,18 @@ namespace AsoftyBackend.Infrastructure.Utils
 
 
         
+        public static string OperatorToSqlString(Operator op)
+        {
+            switch (op)
+            {
+                case Operator.Equals: return "=";
+                case Operator.GreaterThan: return ">";
+                case Operator.LessThan: return "<";
+                case Operator.NotEquals: return "<>";
+                default: return "=";
+
+            }
+        }
         
         public static bool NullOrEmpty(this string? str) => str == null || str == "";
         public static string AntiInjectionFormat(this string str) => str.Replace("'", "''").Replace("\"", "\"");

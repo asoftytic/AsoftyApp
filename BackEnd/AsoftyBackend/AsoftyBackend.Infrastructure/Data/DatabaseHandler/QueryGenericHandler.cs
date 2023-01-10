@@ -91,13 +91,6 @@ public class QueryGenericHandler<T> : GenericHandler<T> where T : DbEntity, new(
         return await UpdateAsync(entity, _where, IgnoreFields);
     }
 
-    public async Task<int> UpdateWhereAsync(object entity, Expression<Func<T, bool>> whereExpression, params string[] IgnoreFields)
-    {
-        string whereClause = "";
-        ReflectionUtils.ExpressionToString(whereExpression, ref whereClause);
-        return await UpdateAsync(entity, whereClause, IgnoreFields);
-    }
-
     private async Task<int> UpdateAsync(object entity,string whereClauseStr, params string[] IgnoreFields)
     {
         string whereClause = whereClauseStr;
@@ -120,15 +113,20 @@ public class QueryGenericHandler<T> : GenericHandler<T> where T : DbEntity, new(
         return await _connection.ExecuteAsync(sqlQuery, entity);
     }
 
-    /*
-     public async Task<int> InsertSqlAsync(string query)
+    //  should not be used
+    public override QueryGenericHandler<T> ExplicitWhere(string expression)
     {
-        OpenConection();
-
-        return await _connection.ExecuteAsync(query);
+        return (QueryGenericHandler<T>)base.ExplicitWhere(expression);
     }
-     */
 
+    
+
+    //public async Task<int> UpdateWhereAsync(object entity, Expression<Func<T, bool>> whereExpression, params string[] IgnoreFields)
+    //{
+    //    string whereClause = "";
+    //    ReflectionUtils.ExpressionToString(whereExpression, ref whereClause);
+    //    return await UpdateAsync(entity, whereClause, IgnoreFields);
+    //}
 
     //  Multiples Insert
     /*
@@ -149,15 +147,22 @@ public class QueryGenericHandler<T> : GenericHandler<T> where T : DbEntity, new(
     */
 
 
-    public override QueryGenericHandler<T> Where(Expression<Func<T, bool>> expression)
+    //public override QueryGenericHandler<T> Where(Expression<Func<T, bool>> expression)
+    //{
+    //    return (QueryGenericHandler<T>)base.Where(expression);
+    //}
+
+    public override QueryGenericHandler<T> Where(object entity, LogicalNode AndNodeInternal = LogicalNode.True, LogicalNode AndNodeExternal = LogicalNode.True)
     {
-        return (QueryGenericHandler<T>)base.Where(expression);
+        return (QueryGenericHandler<T>)base.Where(entity, AndNodeInternal, AndNodeExternal);
     }
 
-    public override QueryGenericHandler<T> ExplicitWhere(string expression)
+    public override QueryGenericHandler<T> WhereNot(object entity, LogicalNode AndNodeInternal = LogicalNode.True, LogicalNode AndNodeExternal = LogicalNode.True)
     {
-        return (QueryGenericHandler<T>)base.ExplicitWhere(expression);
+        return (QueryGenericHandler<T>)base.WhereNot(entity, AndNodeInternal, AndNodeExternal);
     }
+
+
 
     public async Task OpenConectionAsync()
     {
