@@ -1,5 +1,4 @@
 ﻿using AsoftyBackend.Infrastructure.Data.DatabaseHandler;
-using AsoftyBackend.Infrastructure.Data.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +12,7 @@ namespace AsoftyBackend.Infrastructure
         public static async void Main()
         {
 
-            var db = new QueryGenericHandler<User>();
+            //var db = new QueryGenericHandler<User>();
 
 
             //  Query Example

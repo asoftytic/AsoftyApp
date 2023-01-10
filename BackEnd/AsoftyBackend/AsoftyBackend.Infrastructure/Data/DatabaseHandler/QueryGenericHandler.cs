@@ -4,11 +4,10 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using AsoftyBackend.Infrastructure.Data.Attributes;
-using AsoftyBackend.Infrastructure.Data.Model;
-using AsoftyBackend.Infrastructure.Utils;
 using Dapper;
 using MySql.Data.MySqlClient;
+using AsoftyBackend.Infrastructure.Data.Attributes;
+using AsoftyBackend.Infrastructure.Utils;
 
 namespace AsoftyBackend.Infrastructure.Data.DatabaseHandler;
 
