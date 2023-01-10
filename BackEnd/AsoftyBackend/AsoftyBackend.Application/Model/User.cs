@@ -1,6 +1,7 @@
-﻿using AsoftyBackend.Infrastructure.Data.Attributes;
+﻿using AsoftyBackend.Infrastructure.Data;
+using AsoftyBackend.Infrastructure.Data.Attributes;
 
-namespace AsoftyBackend.Infrastructure.Data.Model;
+namespace AsoftyBackend.Application.Model;
 
 public class User : DbEntity
 {

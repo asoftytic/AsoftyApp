@@ -5,7 +5,9 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsoftyBackend.Infrastructure", "AsoftyBackend.Infrastructure\AsoftyBackend.Infrastructure.csproj", "{7AC65597-C967-4D3F-A118-8D075574A2BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsoftyBackend.Api", "AsoftyBackend.Api\AsoftyBackend.Api.csproj", "{B9E15AA5-1B1F-4301-96A7-5BBCE5D72896}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsoftyBackend.Api", "AsoftyBackend.Api\AsoftyBackend.Api.csproj", "{B9E15AA5-1B1F-4301-96A7-5BBCE5D72896}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsoftyBackend.Application", "AsoftyBackend.Application\AsoftyBackend.Application.csproj", "{B358F94F-B0ED-4CB5-ABA6-EB6806AFEE55}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{B9E15AA5-1B1F-4301-96A7-5BBCE5D72896}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9E15AA5-1B1F-4301-96A7-5BBCE5D72896}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9E15AA5-1B1F-4301-96A7-5BBCE5D72896}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B358F94F-B0ED-4CB5-ABA6-EB6806AFEE55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B358F94F-B0ED-4CB5-ABA6-EB6806AFEE55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B358F94F-B0ED-4CB5-ABA6-EB6806AFEE55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B358F94F-B0ED-4CB5-ABA6-EB6806AFEE55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

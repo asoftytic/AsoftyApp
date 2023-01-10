@@ -2,4 +2,6 @@
 /BackEnd/AsoftyBackend/AsoftyBackend.Api/obj/
 /BackEnd/AsoftyBackend/AsoftyBackend.Infrastructure/Bin/
 /BackEnd/AsoftyBackend/AsoftyBackend.Infrastructure/obj/
+/BackEnd/AsoftyBackend/AsoftyBackend.Application/Bin/
+/BackEnd/AsoftyBackend/AsoftyBackend.Application/obj/
 /BackEnd/AsoftyBackend/.vs/
