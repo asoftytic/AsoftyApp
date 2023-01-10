@@ -104,7 +104,7 @@ input{
         margin-top: 40px;
     }
 }
-@media only screen and (min-width: 1200px){
+/* @media only screen and (min-width: 1200px){
     .contenido{
         border-radius: 20px;
         align-items: center;
@@ -194,4 +194,4 @@ input{
     label{
         margin-top: 40px;
     }
-}
+} */
