@@ -41,17 +41,20 @@ input{
     font-weight: bold;
 }
 /* medida para ceular */
-@media only screen and (max-width: 600px){
+/* @media only screen and (max-width: 600px){ */
     .contenido{
+        width: 18%;
+        margin-top: 10%;
+        margin-left: 40%;
         border-radius: 30px;
         align-items: center;
-        margin: 180px 30px 20px 30px;
         padding: 50px 10px 20px 10px;
         background-color: rgba(246, 246, 248, 0.6)
         
     }
     .logo{
-        width: 230px;
+        width: 70%;
+        align-items: center;
         padding: 0px 0px 50px 43px;
     }
     .formlogin{
@@ -66,44 +69,51 @@ input{
         border: none !important;
     }
     .recuperar a{
-        margin-left: 80px;
+        margin-left: 44%;
         padding: 10px 0px 0px 20px;
         font-size: 18px;
     }
     .nit{
-        background-image: url(../../login/iconos/office.png);
+        width: 55%;
+        margin-right: 30%;
+        margin-left: 5%;
+        background-image: url(../iconos/office.png);
         background-size: 15px 15px;
         background-repeat: no-repeat;
-        background-position: 16rem center;
-        padding: 10px 120px 10px 8px;
-        margin: 5px 0px 10px 10px;
+        background-position: 98% center;
+        padding-right: 30%;
         border: none !important;
         border-radius: 8px;
     }
-    .identificacion{
-        background-image: url(../../login/iconos/user.png);
+    .Username{
+        width: 55%;
+        margin-right: 30%;
+        margin-left: 5%;
+        background-image: url(../iconos/user.png);
         background-size: 15px 15px;
         background-repeat: no-repeat;
-        background-position: 16rem center;
-        padding: 10px 120px 10px 8px;
-        margin: 5px 0px 10px 10px;
+        background-position: 98% center;
+        /* padding: 10px 120px 10px 8px; */
+        padding-right: 30%;
         border: none !important;
         border-radius: 8px;
     }
     .password{
-        background-image: url(../../login/iconos/lock.png);
+        width: 55%;
+        margin-right: 30%;
+        margin-left: 5%;
+        background-image: url(../iconos/lock.png);
         background-size: 15px 15px;
         background-repeat: no-repeat;
-        background-position: 16rem center;
-        padding: 10px 120px 10px 8px;
-        margin: 5px 0px 10px 10px;
+        background-position: 98% center;    
+        padding-right: 30%;
         border: none !important;
         border-radius: 8px;
     }
     label{
         margin-top: 40px;
     }
-}
+/* } */
 /* @media only screen and (min-width: 1200px){
     .contenido{
         border-radius: 20px;
