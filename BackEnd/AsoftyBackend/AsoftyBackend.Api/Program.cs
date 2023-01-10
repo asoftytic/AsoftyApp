@@ -1,8 +1,4 @@
-using Dapper;
-using MySql.Data.MySqlClient;
-using System.Linq;
 using AsoftyBackend.Infrastructure;
-using Microsoft.AspNetCore.Builder;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,21 +11,12 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-
-//  onDevelopment unit test
-if(app.Environment.IsDevelopment())
-    ManualUnitTestComponent.Main();
-
-
-
-
-
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwagger();
+    app.UseSwaggerUI();
+    //ManualUnitTestComponent.Main(); //  Unit testing
 }
 
 app.UseHttpsRedirection();
