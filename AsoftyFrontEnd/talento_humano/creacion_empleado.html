@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styletelentocreauser.css">
+    <title>Creación Usuario</title>
+</head>
+<body>
+    <header class="encabezado">
+        <img class="logo" src="../src/assets/img/glogoasofty.png" alt="Logo Asofty">
+        <div class="leyenda">
+            <H1 class="nomempresalogin">TRANSINTERCARGO LTDA</H1>
+            <p class="datoslocales">Jueves 12 de enero de 2023 | Bogotá | Colombia</p>
+        </div>
+        <div class="infouser">
+            <h3 class="nombrelogin">Andres Chavez Pedraza</h3>
+            <p class="infouserlogin">Recursos Humanos</p>
+            <p class="infouserlogin">talentohumano@transintercargo.com</p>
+            <p class="infouserlogin">Movil: 3142414905</p>  
+        </div>
+            <img class="logouser" src="../src/assets/img/gfotouser.png" alt="">
+    </header>
+    <div class="container">
+        <ul class="menu">
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Administrativo</a>
+                <ul>
+                    <li><a href="">Terceros</a></li>
+                    <li><a href="">PQR</a></li>
+                    <li><a href="">Gestion Documental</a></li>
+                    <li><a href="">Informes</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Recursos Humanos</a>
+                <ul>
+                    <li><a href="#">Empleados</a>
+                        <ul>
+                            <li><a href="#">Nuevo</a></li>
+                            <li><a href="#">Lista</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Nomina</a></li>
+                    <li><a href="#">Parametros de informes</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Comercial</a></li>
+            <li><a href="#">Operaciones</a></li>
+            <li><a href="#">Financiera</a></li>
+            <li><a href="#">Gerencia</a></li>
+            <li><a href="#">salir</a></li>
+        </ul>
+        <div class="contenedorfor">
+            <form action="#">
+                <label for="Situacion" name="Situacion">Situación*</label>
+                <select required>
+                        <option value="" disabled selected></option>
+                        <option value="">Vinculado</option>
+                        <option value="">Desvinculado</option>
+                </select>
+                <!-- imformacion personal del empleado -->
+                <div class="containeruserempl">
+                    <a href="">Informacion Personal</a>
+                    <!-- informacion Personal -->
+                    <div class="container1">
+                        <div class="containeruser">
+                            <label for="FirstName">1er Nombre*</label>
+                            <input type="text" name="FirstName" required>
+                            <label for="MiddleName">2do Nombre</label>
+                            <input type="text" name="MiddleName" required><br>
+                            <label for="LastName1">1er Apellido*</label>
+                            <input type="text" name="LastName1" required>
+                            <label for="LastName2">2do Apellido*</label>
+                            <input type="text" name="LastName2" required><br>
+                            <label for="" name="">Tipo de identificación*</label>
+                            <select required>
+                                <option value=""disabled selected></option>
+                                <option value="">Tomar BD</option>
+                            </select>
+                            <label for="Identification">Numero de identificación*</label>
+                            <input type="number" name="Identification" required>
+                            <label for="Birthday">Fecha de nacimiento*</label>
+                            <input type="date" name="Birthday" required>
+                            <label for="RH" name="RH">RH*</label>
+                            <select required>
+                                <option value=""disabled selected></option>
+                                <option value="">A+</option>
+                                <option value="">O+</option>
+                                <option value="">B+</option>
+                                <option value="">AB+</option>
+                                <option value="">A-</option>
+                                <option value="">O-</option>
+                                <option value="">B-</option>
+                                <option value="">AB-</option>
+                            </select>
+                            <label for="Country" name="Country">País*</label>
+                            <select required>
+                                <option value=""disabled selected></option>
+                                <option value="">Tomar BD</option>
+                            </select><br>
+                            <label for="">Ciudad*</label>
+                            <select required>
+                                <option value=""disabled selected></option>
+                                <option value="">Tomar BD</option>
+                            </select>
+                            <label for="Address">Dirección*</label>
+                            <input type="text" name="Address" required><br>
+                            <label for="Phone">Teléfono</label>
+                            <input type="text" name="Phone">
+                            <label for="PhoneCel">Móvil*</label>
+                            <input type="text" name="PhoneCel" required>
+                            <label for="">Email*</label>
+                            <input type="email" name="" required><br>
+                            <label for=Emergency"">En caso de emergecia avisar a:*</label>
+                            <input type="text" name="Emergency" required>
+                            <label for="Relationship">Parentesco*</label>
+                            <select required>
+                                <option value=""disabled selected></option>
+                                <option value="">Tomar BD(a)</option>
+                            </select>
+                            <label for="ContactPhone">Número de contacto*</label>
+                            <input type="number" name="ContactPhone" required>
+                        </div>
+                        <!-- Adjuntar fotos -->
+                        <div class="containerimguser">
+                            <input onInput="update_image()" type="file" />
+                        </div>
+                    </div>   
+                </div>
+                <!-- Informacion corporativa -->
+                <div class="containerinfcorp">
+                    <a href="">Información Corporativa</a>
+                    <div class="datoscorp">
+                        <label for="WorkingType">Tipo de empleado*</label>
+                            <select required>
+                                <option value=""disabled selected></option>
+                                <option value="">Tomar BD(a)</option>
+                            </select>
+                        <label for="">Area*</label>
+                            <select required>
+                                <option value=""disabled selected></option>
+                                <option value="">Administrativo</option>
+                                <option value="">Comercial</option>
+                                <option value="">Financiero</option>
+                                <option value="">Operaciones</option>
+                            </select>
+                        <label for="">Centro de costo*</label>
+                            <select required>
+                                <option value=""disabled selected></option>
+                                <option value="">Tomar BD(a)</option>
+                            </select><br>
+                        <label for="Charge">Cargo*</label>
+                        <input type="text" name="Charge" required>    
+                        <label for="Chief">Jefe Directo*</label>
+                        <input type="text" name="Chief" required>
+                        <label for="">Tipo de contrato*</label>
+                        <select required>
+                            <option value=""disabled selected></option>
+                            <option value="">Tomar BD</option>
+                        </select><br>
+                        <label for="ContractDate">Fecha de vinculación*</label>
+                        <input type="date" name="ContractDate" required>
+                        <label for="">Fecha de vinculación</label>
+                        <input type="date" name="">
+                        <label for="">Correo corporativo</label>
+                        <input type="email" name="" >
+                        <label for="">Movil Corporativo</label>
+                        <input type="number" name="" >
+                    </div>
+                </div> 
+                <!-- Datos salariales -->
+                <div class="containerinfosalari">
+                    <a href="">Datos salariales</a>
+                    <div class="datossalariales">
+                        <label for="alary">Salario*</label>
+                        <input type="date" name="alary" required>
+                        <label for="ARL">Riesgo Laborales</label>
+                            <select required>
+                                <option value=""disabled selected></option>
+                                <option value="">Tomar BD(a)</option>
+                            </select>
+                        <label for="">% Tarifa</label>
+                        <input type="number" name=""><br>
+                        <label for="">Compensación Extra</label>
+                        <input type="email" name="" >
+                        <label for="EPS">EPS</label>
+                            <select required>
+                                <option value=""disabled selected></option>
+                                <option value="">Tomar BD(a)</option>
+                            </select><br>
+                        <label for="Frequency">Frecuencia de pago</label>
+                            <select required>
+                                <option value=""disabled selected></option>
+                                <option value="">Tomar BD</option>
+                            </select> 
+                        <label for="Pension">Fondo de Pensión</label>
+                            <select required>
+                                <option value=""disabled selected></option>
+                                <option value="">Tomar BD(a)</option>
+                            </select><br>  
+                        <label for="MoneyType">Moneda de pago*</label>
+                            <select required>
+                                <option value=""disabled selected></option>
+                                <option value="">Tomar BD(a)</option>
+                            </select>  
+                        <label for="Cesantias">Fondo de Cesantias</label>
+                            <select required>
+                                <option value=""disabled selected></option>
+                                <option value="">Tomar BD(a)</option>
+                            </select><br>
+                        <label for="Compensation">Compensación Extra</label>
+                        <input type="number" name="Compensation" > 
+                        <label for="CCF">Caja de Compensación</label>
+                            <select required>
+                                <option value=""disabled selected></option>
+                                <option value="">Tomar BD(a)</option>
+                            </select><br>
+                        <label for="BankAccount">N° de Cuenta Bancaria</label>
+                        <input type="number" name="BankAccount" > 
+                        <label for="AccountType">Tipo de Cuenta</label>
+                            <select required>
+                                <option value=""disabled selected></option>
+                                <option value="">Ahorros</option>
+                                <option value="">Corriente</option>
+                            </select>
+                        <label for="Bank">Banco</label>
+                            <select required>
+                                <option value=""disabled selected></option>
+                                <option value="">Tomar BD(a)</option>
+                            </select>
+                    </div>
+                </div>
+                <!-- Parametro salariales -->
+                <div class="containerparasalari">
+                    <a href="">Parámetros Salariales</a>
+                    <div class="parasalari">
+                        <div class="switch-button">
+                            <label for="Parafiscales">Sena, ICBF, Salud</label>
+                            <!-- Checkbox -->
+                            <input type="checkbox" name="Parafiscales" id="Parafiscales" class="switch-button__checkbox">
+                            <!-- Botón -->
+                            <label for="Parafiscales" class="switch-button__label"></label>
+                        </div>
+                        <label for="Retencion">Rete Fuente</label>
+                            <select required>
+                                <option value=""disabled selected></option>
+                                <option value="Retencion1">Procedimiento 1</option>
+                                <option value="Retencion2">Procedimiento 2</option>
+                            </select>
+                        <label for="Retefuente%">% de Rete Fuente</label>
+                        <input type="number" name="Retefuente%"><br>
+                        <div class="switch-button1">
+                            <label for="PensionSel">Pensión</label>
+                            <!-- Checkbox -->
+                            <input type="checkbox" name="PensionSel" id="PensionSel" class="switch-button__checkbox1">
+                            <!-- Botón -->
+                            <label for="PensionSel" class="switch-button__label1"></label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

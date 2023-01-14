@@ -1,3 +1,4 @@
+/* diseño de Header y menu */
 *{
     margin: 0;
     padding: 0;
@@ -14,7 +15,7 @@ header{
 .menu{
     width: 10%;
     background-color: #EBEAF5;
-    padding: 19% 0% 19% 4%;
+    padding: 5% 0% 19% 4%;
     text-align: justify;
 }
 .menu a{
